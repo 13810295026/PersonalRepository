@@ -2,14 +2,25 @@ package com.ceac.easystudy.mockexercises.vo;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Knowledges {
 
+	// 返回json中把字段名起别名返回
+	@JsonIgnore
 	private String id;
+	@JsonProperty(value = "KnowledgeId")
 	private String kid;
+	@JsonProperty(value = "KnowledgeName")
 	private String name;
+	@JsonProperty(value = "SubId")
 	private String sid;
+	@JsonProperty(value = "FatherId")
 	private String parentId;
+	@JsonProperty(value = "Sort")
 	private Integer sort;
+	@JsonProperty(value = "ChildKnowledgees")
 	private List<Knowledge> knowledge;
 
 	public String getId() {

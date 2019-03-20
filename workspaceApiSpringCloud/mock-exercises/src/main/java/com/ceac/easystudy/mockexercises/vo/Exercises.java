@@ -2,16 +2,28 @@ package com.ceac.easystudy.mockexercises.vo;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class Exercises {
 
+	// 返回json中把字段名起别名返回
+	@JsonProperty(value = "Qid")
 	private String qid;
-	private String qType;
+	@JsonProperty(value = "Qtype")
+	private String qtype;
+	@JsonProperty(value = "Difficulty")
 	private String difficulty;
+	@JsonProperty(value = "KnowledgeId")
 	private String kid;
+	@JsonProperty(value = "QNum")
 	private Integer sort;
+	@JsonProperty(value = "Topic")
 	private String topic;
+	@JsonProperty(value = "AnswerParse")
 	private String analysis;
+	@JsonProperty(value = "Answers")
 	private List<String> answers;
+	@JsonProperty(value = "Options")
 	private List<OptionContent> options;
 
 	public String getQid() {
@@ -22,12 +34,12 @@ public class Exercises {
 		this.qid = qid;
 	}
 
-	public String getqType() {
-		return qType;
+	public String getQtype() {
+		return qtype;
 	}
 
-	public void setqType(String qType) {
-		this.qType = qType;
+	public void setQtype(String qtype) {
+		this.qtype = qtype;
 	}
 
 	public String getDifficulty() {

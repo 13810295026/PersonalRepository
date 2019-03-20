@@ -10,8 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.baomidou.mybatisplus.mapper.Condition;
+import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.ceac.easystudy.mockexercises.mapper.ExercisesMapper;
+import com.ceac.easystudy.mockexercises.mapper.KnowledgeMapper;
 import com.ceac.easystudy.mockexercises.po.ExercisesPojo;
+import com.ceac.easystudy.mockexercises.po.KnowledgePojo;
 import com.ceac.easystudy.mockexercises.service.ExercisesService;
 import com.ceac.easystudy.mockexercises.vo.Exercises;
 import com.ceac.easystudy.mockexercises.vo.OptionContent;
@@ -23,13 +26,25 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class ExercisesServiceImpl implements ExercisesService {
 
 	@Autowired
+	KnowledgeMapper knowledgeMapper;
+
+	@Autowired
 	ExercisesMapper exercisesMapper;
 
 	public List<Exercises> extract(String kid) {
 		List<Exercises> list = new ArrayList<>();
-		List<ExercisesPojo> pojos = exercisesMapper.selectWithCache(kid);
-		// exercisesMapper.selectList(Condition.create().eq("KnowledgeId",kid));
 		List<ExercisesPojo> randoms = new ArrayList<ExercisesPojo>();
+		List<ExercisesPojo> pojos = new ArrayList<ExercisesPojo>();
+
+		EntityWrapper<KnowledgePojo> ew = new EntityWrapper<KnowledgePojo>(new KnowledgePojo());
+		ew.where("KnowledgeId={0}", kid).or("FatherId={0}", kid);
+		List<KnowledgePojo> knowledges = knowledgeMapper.selectList(ew);
+
+		for (KnowledgePojo knowledge : knowledges) {
+			pojos.addAll(exercisesMapper.selectWithCache(knowledge.getKnowledgeId()));
+		}
+		// List<ExercisesPojo> pojos = exercisesMapper.selectWithCache(kid);
+		// exercisesMapper.selectList(Condition.create().eq("KnowledgeId",kid));
 
 		Map map = new HashMap();
 		if (pojos.size() <= 5) {
@@ -54,10 +69,11 @@ public class ExercisesServiceImpl implements ExercisesService {
 			List<String> answers = new ArrayList<>();
 
 			exercises.setQid(pojo.getQid());
-			exercises.setqType(pojo.getQtype());
+			exercises.setQtype(pojo.getQtype());
 			exercises.setDifficulty(pojo.getDifficulty());
 			exercises.setKid(pojo.getKnowledgeId());
 			exercises.setSort(count);
+			exercises.setAnalysis(pojo.getAnswerParse());
 
 			try {
 				List<OptionContent> contents = mapper.readValue(pojo.getContent(),
