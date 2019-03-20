@@ -19,7 +19,7 @@ public class ExercisesController {
 
 	@RequestMapping(value = "GetPaperQuestionInfo", method = RequestMethod.GET)
 	@HystrixCommand(fallbackMethod = "exercisesFallback")
-	public ResultMsg knowledges(@RequestParam("knowledgeId") String kid) {
+	public ResultMsg extract(@RequestParam("knowledgeId") String kid) {
 		return exercisesFeign.extract(kid);
 	}
 	
