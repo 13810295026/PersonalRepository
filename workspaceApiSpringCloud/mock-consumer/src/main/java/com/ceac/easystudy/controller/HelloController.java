@@ -11,19 +11,12 @@ import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 @RestController
 public class HelloController {
 
-	// @Autowired
-	// private RestTemplate restTemplate;
-	
 	@Autowired
 	private HelloFeign helloFeign;
-	
+
 	@GetMapping("/hello/{name}")
 	@HystrixCommand(fallbackMethod = "helloFallback")
 	public String hello(@PathVariable String name) {
-
-//		String url = "http://provider-mockexam/hello/" + name;
-//		return this.restTemplate.getForObject(url, String.class);
-		
 		return helloFeign.hello(name);
 	}
 

@@ -9,7 +9,6 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.baomidou.mybatisplus.mapper.Condition;
 import com.baomidou.mybatisplus.mapper.EntityWrapper;
 import com.ceac.easystudy.mockexercises.mapper.ExercisesMapper;
 import com.ceac.easystudy.mockexercises.mapper.KnowledgeMapper;
@@ -32,7 +31,7 @@ public class ExercisesServiceImpl implements ExercisesService {
 	ExercisesMapper exercisesMapper;
 
 	public List<Exercises> extract(String kid) {
-		List<Exercises> list = new ArrayList<>();
+		List<Exercises> list = new ArrayList<Exercises>();
 		List<ExercisesPojo> randoms = new ArrayList<ExercisesPojo>();
 		List<ExercisesPojo> pojos = new ArrayList<ExercisesPojo>();
 
@@ -43,10 +42,8 @@ public class ExercisesServiceImpl implements ExercisesService {
 		for (KnowledgePojo knowledge : knowledges) {
 			pojos.addAll(exercisesMapper.selectWithCache(knowledge.getKnowledgeId()));
 		}
-		// List<ExercisesPojo> pojos = exercisesMapper.selectWithCache(kid);
-		// exercisesMapper.selectList(Condition.create().eq("KnowledgeId",kid));
 
-		Map map = new HashMap();
+		Map<Integer, String> map = new HashMap<Integer, String>();
 		if (pojos.size() <= 5) {
 			randoms = pojos;
 		} else {
