@@ -13,6 +13,9 @@ eureka:
 feign:
   hystrix:
     enabled: true
+turbine:
+  appConfig: provider-mockexam,provider-mockexercises
+  clusterNameExpression: "'default'"
 logging:
   level:
     root: INFO   
