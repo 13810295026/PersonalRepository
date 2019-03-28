@@ -25,6 +25,11 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-zuul</artifactId>
 		</dependency>
+		<!-- 整合Redis分布式缓存 -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-redis</artifactId>
+		</dependency>
 		<dependency>
 			<groupId>com.ceac.easystudy</groupId>
 			<artifactId>mock-common</artifactId>
