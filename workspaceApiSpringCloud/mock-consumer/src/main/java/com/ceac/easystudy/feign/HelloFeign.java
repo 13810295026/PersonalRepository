@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @FeignClient(value = "provider-mockexam")
 public interface HelloFeign {
 
-	@RequestMapping("/hello/{name}")
-	public String hello(@PathVariable("name") String name);
+	@RequestMapping("/hello/{version}")
+	public String hello(@PathVariable("version") String version);
 }

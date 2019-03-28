@@ -4,9 +4,10 @@ import org.springframework.cloud.netflix.feign.FeignClient;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.ceac.easystudy.hystrix.PaperHystrix;
 import com.ceac.easystudy.po.ResultMsg;
 
-@FeignClient("provider-mockexam")
+@FeignClient(name = "provider-mockexam", fallback = PaperHystrix.class)
 public interface PaperFeign {
 
 	@RequestMapping("/paper/find/{sid}")
@@ -14,7 +15,7 @@ public interface PaperFeign {
 
 	@RequestMapping("/paper/questions/{pid}")
 	public ResultMsg questions(@PathVariable("pid") String pid);
-	
+
 	@RequestMapping("/paper/remove/{sid}")
 	public ResultMsg remove(@PathVariable("sid") String sid);
 

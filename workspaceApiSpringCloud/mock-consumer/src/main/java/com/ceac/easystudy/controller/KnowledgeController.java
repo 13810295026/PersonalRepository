@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ceac.easystudy.feign.KnowledgeFeign;
 import com.ceac.easystudy.po.ResultMsg;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
 @RestController
 @RequestMapping("/ExercisesKnowledgee/")
@@ -18,7 +17,6 @@ public class KnowledgeController {
 	private KnowledgeFeign knowledgeFeign;
 
 	@RequestMapping(value = "GetKnowledgeInfo", method = RequestMethod.GET)
-	@HystrixCommand(fallbackMethod = "knowledgesFallback")
 	public ResultMsg knowledges(@RequestParam("subjectId") String sid) {
 		return knowledgeFeign.find(sid);
 	}
@@ -26,9 +24,5 @@ public class KnowledgeController {
 	@RequestMapping("RemoveKnowledges")
 	public ResultMsg remove(@RequestParam("subjectId") String sid) {
 		return knowledgeFeign.remove(sid);
-	}
-
-	public ResultMsg knowledgesFallback(@RequestParam("subjectId") String sid) {
-		return new ResultMsg(201, "微服务暂时不可用", sid);
 	}
 }
