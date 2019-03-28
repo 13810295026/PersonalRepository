@@ -9,7 +9,7 @@ import com.ceac.easystudy.po.ResultMsg;
 public class SubjectHystrix implements SubjectFeign {
 
 	@Override
-	public ResultMsg subjects() {
+	public ResultMsg find() {
 		return new ResultMsg(201, "微服务暂时不可用", "科目");
 	}
 

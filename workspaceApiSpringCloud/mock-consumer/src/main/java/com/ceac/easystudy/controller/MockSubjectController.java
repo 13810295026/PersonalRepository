@@ -17,7 +17,7 @@ public class MockSubjectController {
 
 	@RequestMapping(value = "GetSubjectInfos", method = RequestMethod.GET)
 	public ResultMsg subjects() {
-		return subjectFeign.subjects();
+		return subjectFeign.find();
 	}
 
 	@RequestMapping("RemoveSubjects")

@@ -23,7 +23,7 @@ public class MockExamController {
 
 	@RequestMapping(value = "GetQuestInfos", method = RequestMethod.GET)
 	public ResultMsg questions(@RequestParam("pId") String pid) {
-		return paperFeign.questions(pid);
+		return paperFeign.findQuestions(pid);
 	}
 
 	@RequestMapping("RemovePapers")
@@ -33,6 +33,6 @@ public class MockExamController {
 
 	@RequestMapping("RemoveQuestions")
 	public ResultMsg removeQuestions(@RequestParam("pId") String pid) {
-		return paperFeign.removeCache(pid);
+		return paperFeign.removeQuestions(pid);
 	}
 }

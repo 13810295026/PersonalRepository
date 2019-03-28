@@ -15,7 +15,7 @@ public class PaperHystrix implements PaperFeign {
 	}
 
 	@Override
-	public ResultMsg questions(@RequestParam("pId") String pid) {
+	public ResultMsg findQuestions(@RequestParam("pId") String pid) {
 		return new ResultMsg(201, "微服务暂时不可用", pid);
 	}
 
@@ -25,7 +25,7 @@ public class PaperHystrix implements PaperFeign {
 	}
 
 	@Override
-	public ResultMsg removeCache(@RequestParam("pId") String pid) {
+	public ResultMsg removeQuestions(@RequestParam("pId") String pid) {
 		return new ResultMsg(201, "微服务暂时不可用", pid);
 	}
 }

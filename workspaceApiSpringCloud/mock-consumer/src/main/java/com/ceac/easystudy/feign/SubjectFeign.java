@@ -10,7 +10,7 @@ import com.ceac.easystudy.po.ResultMsg;
 public interface SubjectFeign {
 
 	@RequestMapping("/subject/find")
-	public ResultMsg subjects();
+	public ResultMsg find();
 
 	@RequestMapping("/subject/remove")
 	public ResultMsg remove();

@@ -14,12 +14,12 @@ public interface PaperFeign {
 	public ResultMsg find(@PathVariable("sid") String sid);
 
 	@RequestMapping("/paper/questions/{pid}")
-	public ResultMsg questions(@PathVariable("pid") String pid);
+	public ResultMsg findQuestions(@PathVariable("pid") String pid);
 
 	@RequestMapping("/paper/remove/{sid}")
 	public ResultMsg remove(@PathVariable("sid") String sid);
 
 	@RequestMapping("/paper/questions/remove/{pid}")
-	public ResultMsg removeCache(@PathVariable("pid") String pid);
+	public ResultMsg removeQuestions(@PathVariable("pid") String pid);
 
 }
