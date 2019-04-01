@@ -13,6 +13,10 @@ eureka:
 feign:
   hystrix:
     enabled: true
+hystrix:
+  threadpool:
+    default:
+      coreSize: 20
 #turbine:
 #  appConfig: provider-mockexam,provider-mockexercises
 #  clusterNameExpression: "'default'"
